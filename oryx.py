@@ -71,7 +71,7 @@ class Oryx(multiprocessing.Process):
     def sync_process(self, paths: list) -> None:
         for p in paths:
             logger.debug(f'{self.name} processing_path {p}')
-            resp = os.system(f"yara -fws {self.rules} '{p}' >> results.txt 2>&1")
+            resp = os.system(f"yara -fws '{self.rules}' '{p}' >> results.txt 2>&1")
             self.result_queue.put(f'{p} scan complete')
 
     def check_battery(self) -> str:
